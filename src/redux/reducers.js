@@ -1,18 +1,19 @@
 import { combineReducers } from "redux";
 
 const getDbProduct = () => {
-    return localStorage.getItem('prods') || [];
+    let data = localStorage.getItem("prods")
+    return  data ? [data] : [];
 }
 
 const saveDbProduct = (products) => {
-    localStorage.setItem('prods', JSON.stringify(products));
+    localStorage.setItem("prods", JSON.stringify(products));
 }
 
 const productReducer = (state = getDbProduct(), action) => {
     switch(action.type) {
         case "add" :
             saveDbProduct(action.payload)
-            return [action.payload, ...state];
+            return [...action.payload, ...state];
         case "remove" :
             state = getDbProduct();
             let pds = state.filter(p => p.id != payload);
