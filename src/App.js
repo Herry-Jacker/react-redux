@@ -12,7 +12,6 @@ export default function App() {
         let response = await fetch('https://fakestoreapi.com/products');
         let pds = await response.json();
         dispatch(add(pds));
-        console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
